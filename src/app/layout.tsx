@@ -5,8 +5,8 @@ import './globals.css';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Petcare',
-  description: 'Pet daycare management system',
+  title: 'Petcare - Pet daycare management system',
+  description: "Take care of people's pets responsibly with Petcare",
 };
 
 export default function RootLayout({
