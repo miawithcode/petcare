@@ -17,7 +17,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="h-full">
       <body
-        className={`relative flex min-h-svh flex-col bg-zinc-100 text-zinc-900 antialiased ${inter.className}`}
+        className={`relative flex min-h-svh flex-col antialiased ${inter.className}`}
       >
         <main className="flex-1 flex-grow">{children}</main>
       </body>
