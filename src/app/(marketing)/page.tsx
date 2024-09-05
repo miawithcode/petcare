@@ -144,7 +144,7 @@ function Reviews() {
 
 function ReviewCard({ review }: { review: Review }) {
   return (
-    <Card className="break-inside-avoid px-8 py-4">
+    <Card className="break-inside-avoid px-8 py-4 ring-primary/50 transition hover:ring-2">
       <QuoteIcon className="h-8 w-8 text-primary" />
       <CardContent className="mt-3 px-0">
         <p>{review.review}</p>
