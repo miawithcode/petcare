@@ -1,8 +1,10 @@
+import Footer from '@/components/footer';
 import Bird from '@/components/illustration/bird';
 import Cat from '@/components/illustration/cat';
 import Dog from '@/components/illustration/dog';
 import Hamster from '@/components/illustration/hamster';
 import Container from '@/components/layout/container';
+import Logo from '@/components/logo';
 import SectionHeading from '@/components/section-heading';
 import { Button } from '@/components/ui/button';
 import {
@@ -43,14 +45,12 @@ function GetStartedButton({ className }: { className?: string }) {
 function Header() {
   return (
     <header className="flex w-full items-center justify-between py-6">
-      <Link href="/" className="text-xl font-bold">
-        Pet<span className="text-primary">care</span>
-      </Link>
+      <Logo />
 
       <div className="flex items-center gap-x-2">
         <GetStartedButton />
         <Button asChild variant={'outline'}>
-          <Link href="/login">Launch App</Link>
+          <Link href="/app/dashboard">Launch App</Link>
         </Button>
       </div>
     </header>
@@ -174,13 +174,5 @@ function CallToAction() {
       <SectionHeading title="Don't hesitate to success" />
       <GetStartedButton className="mt-8 w-fit" />
     </section>
-  );
-}
-
-function Footer() {
-  return (
-    <footer className="border-t border-border py-4 text-center text-sm text-muted-foreground">
-      &copy; {new Date().getFullYear()} Petcare
-    </footer>
   );
 }
