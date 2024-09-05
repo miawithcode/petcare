@@ -56,6 +56,9 @@ const config: Config = {
           '5': 'hsl(var(--chart-5))',
         },
       },
+      fontFamily: {
+        satoshi: ['var(--font-satoshi)'],
+      },
     },
   },
   plugins: [require('tailwindcss-animate')],

@@ -1,8 +1,16 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import localfont from 'next/font/local';
 import '../styles/globals.css';
+import { cn } from '@/lib/utils';
 
-const inter = Inter({ subsets: ['latin'] });
+const satoshi = localfont({
+  src: [
+    {
+      path: '../fonts/Satoshi-Variable.ttf',
+    },
+  ],
+  variable: '--font-satoshi',
+});
 
 export const metadata: Metadata = {
   title: 'Petcare - Pet daycare management system',
@@ -17,7 +25,10 @@ export default function RootLayout({
   return (
     <html lang="en" className="h-full">
       <body
-        className={`relative flex min-h-svh flex-col antialiased ${inter.className}`}
+        className={cn(
+          'font-satoshi relative flex min-h-svh flex-col antialiased',
+          satoshi.variable,
+        )}
       >
         <main className="flex-1 flex-grow">{children}</main>
       </body>
