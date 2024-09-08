@@ -9,7 +9,7 @@ export default function PetDetail() {
   const { selectedPet } = usePetContext();
 
   return (
-    <section className="flex h-full w-full flex-col bg-input/20">
+    <section className="bg-background-light flex h-full w-full flex-col">
       {!selectedPet ? (
         <div className="flex h-full items-center justify-center">
           <EmptyView />
@@ -35,7 +35,7 @@ type Props = {
 
 function DetailHeader({ pet }: Props) {
   return (
-    <div className="flex justify-between border-b border-border/50 bg-white px-5 py-6">
+    <div className="border-border-light flex justify-between border-b bg-white px-5 py-6">
       <div className="flex items-center gap-3">
         <div className="relative size-14 overflow-hidden rounded-full">
           <Image
@@ -82,7 +82,7 @@ function DetailInfo({ pet }: Props) {
 function Note({ pet }: Props) {
   return (
     <div className="flex-1 px-8 pb-8">
-      <div className="h-full w-full rounded-lg border border-border/50 bg-white p-4">
+      <div className="border-border-light h-full w-full rounded-lg border bg-white p-4">
         {pet.notes}
       </div>
     </div>
