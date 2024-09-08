@@ -1,9 +1,9 @@
 'use client';
 
 import Image from 'next/image';
-import { Button } from './ui/button';
 import usePetContext from '@/hooks/use-pet-context';
 import { type Pet } from '@/lib/types';
+import PetButton from './buttons/pet-button';
 
 export default function PetDetail() {
   const { selectedPet } = usePetContext();
@@ -52,12 +52,8 @@ function DetailHeader({ pet }: Props) {
       </div>
 
       <div className="flex items-center gap-3">
-        <Button variant="secondary" size="sm">
-          Edit
-        </Button>
-        <Button variant="secondary" size="sm">
-          Checkout
-        </Button>
+        <PetButton action="edit">Edit</PetButton>
+        <PetButton action="checkout">Checkout</PetButton>
       </div>
     </div>
   );

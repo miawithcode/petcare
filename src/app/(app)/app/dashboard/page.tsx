@@ -1,9 +1,10 @@
+import PetButton from '@/components/buttons/pet-button';
 import ContentBlock from '@/components/content-block';
 import PetDetail from '@/components/pet-detail';
 import PetList from '@/components/pet-list';
 import SearchForm from '@/components/search-form';
 import Stats from '@/components/stats';
-import usePetContext from '@/hooks/use-pet-context';
+import { PlusIcon } from '@radix-ui/react-icons';
 
 export default async function Page() {
   return (
@@ -14,9 +15,14 @@ export default async function Page() {
           <SearchForm />
         </div>
 
-        <div className="md:col-span-1 md:col-start-1 md:row-span-full md:row-start-2">
+        <div className="relative md:col-span-1 md:col-start-1 md:row-span-full md:row-start-2">
           <ContentBlock>
             <PetList />
+            <div className="absolute bottom-4 right-4">
+              <PetButton action="add">
+                <PlusIcon className="size-6" />
+              </PetButton>
+            </div>
           </ContentBlock>
         </div>
 
