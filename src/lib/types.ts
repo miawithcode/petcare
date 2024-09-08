@@ -6,8 +6,10 @@ export type Review = {
 };
 
 export type Pet = {
-  id: number;
+  id: string;
   name: string;
   ownerName: string;
   imageUrl: string;
+  age: number;
+  notes: string;
 };

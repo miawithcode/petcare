@@ -1,12 +1,13 @@
 'use client';
 
 import { type Pet } from '@/lib/types';
-import { createContext, useState } from 'react';
+import { createContext, useMemo, useState } from 'react';
 
 type TPetContext = {
   pets: Pet[];
-  selectedPetId: number | null;
-  handleSelectPet: (id: number) => void;
+  selectedPetId: string | null;
+  handleSelectPet: (id: string) => void;
+  selectedPet: Pet | undefined;
 };
 
 type PetContextProviderProps = {
@@ -20,17 +21,31 @@ export default function PetContextProvider({
   children,
   data,
 }: PetContextProviderProps) {
+  // state
   const [pets, setPets] = useState<Pet[]>(data);
-  const [selectedPetId, setSelectedPetId] = useState<number | null>(null);
+  const [selectedPetId, setSelectedPetId] = useState<string | null>(null);
 
-  const handleSelectPet = (id: number) => {
+  // derived
+  const selectedPet = useMemo(() => {
+    return pets.find((pet) => pet.id === selectedPetId);
+  }, [pets, selectedPetId]);
+
+  // handlers
+  const handleSelectPet = (id: string) => {
     setSelectedPetId(id);
   };
 
   console.log(selectedPetId);
 
   return (
-    <PetContext.Provider value={{ pets, selectedPetId, handleSelectPet }}>
+    <PetContext.Provider
+      value={{
+        pets,
+        selectedPetId,
+        handleSelectPet,
+        selectedPet
+      }}
+    >
       {children}
     </PetContext.Provider>
   );
