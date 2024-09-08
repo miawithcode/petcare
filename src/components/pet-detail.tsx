@@ -36,6 +36,8 @@ type Props = {
 };
 
 function DetailHeader({ pet }: Props) {
+  const { selectedPet, handleCheckoutPet } = usePetContext();
+
   return (
     <div className="border-border-light flex justify-between border-b bg-white px-5 py-6">
       <div className="flex items-center gap-3">
@@ -53,7 +55,9 @@ function DetailHeader({ pet }: Props) {
 
       <div className="flex items-center gap-3">
         <PetButton action="edit">Edit</PetButton>
-        <PetButton action="checkout">Checkout</PetButton>
+        <PetButton onClick={() => handleCheckoutPet(pet.id)} action="checkout">
+          Checkout
+        </PetButton>
       </div>
     </div>
   );
