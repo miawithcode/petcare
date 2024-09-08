@@ -5,13 +5,20 @@ import Skeleton from './skeleton/skeleton';
 import { Suspense } from 'react';
 import usePetContext from '@/hooks/use-pet-context';
 import { cn } from '@/lib/utils';
+import useSearchContext from '@/hooks/use-search-context';
 
 export default function PetList() {
   const { pets, handleSelectPet, selectedPetId } = usePetContext();
+  const { searchQuery } = useSearchContext();
+
+  // derived states
+  const filteredPets = pets.filter((pet) =>
+    pet.name.toLowerCase().includes(searchQuery.toLowerCase()),
+  );
 
   return (
     <ul className="h-full w-full">
-      {pets.map((pet) => (
+      {filteredPets.map((pet) => (
         <li key={pet.id}>
           <button
             onClick={() => handleSelectPet(pet.id)}
@@ -29,6 +36,7 @@ export default function PetList() {
                   fill
                   alt={pet.name}
                   className="object-cover"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 />
               </div>
             </Suspense>

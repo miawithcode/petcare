@@ -40,8 +40,6 @@ export default function PetContextProvider({
     setSelectedPetId(id);
   };
 
-  console.log(selectedPetId);
-
   return (
     <PetContext.Provider
       value={{
