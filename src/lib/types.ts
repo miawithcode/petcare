@@ -4,3 +4,10 @@ export type Review = {
   store: string;
   imageUrl: string;
 };
+
+export type Pet = {
+  id: number;
+  name: string;
+  ownerName: string;
+  imageUrl: string;
+};

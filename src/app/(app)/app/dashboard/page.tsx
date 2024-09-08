@@ -3,8 +3,9 @@ import PetDetail from '@/components/pet-detail';
 import PetList from '@/components/pet-list';
 import SearchForm from '@/components/search-form';
 import Stats from '@/components/stats';
+import usePetContext from '@/hooks/use-pet-context';
 
-export default function Page() {
+export default async function Page() {
   return (
     <div className="flex h-full flex-col py-4">
       <Stats />
