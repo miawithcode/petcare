@@ -8,6 +8,7 @@ type TPetContext = {
   selectedPetId: string | null;
   handleSelectPet: (id: string) => void;
   selectedPet: Pet | undefined;
+  numberOfPets: number;
 };
 
 type PetContextProviderProps = {
@@ -30,6 +31,10 @@ export default function PetContextProvider({
     return pets.find((pet) => pet.id === selectedPetId);
   }, [pets, selectedPetId]);
 
+  const numberOfPets = useMemo(() => {
+    return pets.length;
+  }, [pets]);
+
   // handlers
   const handleSelectPet = (id: string) => {
     setSelectedPetId(id);
@@ -43,7 +48,8 @@ export default function PetContextProvider({
         pets,
         selectedPetId,
         handleSelectPet,
-        selectedPet
+        selectedPet,
+        numberOfPets,
       }}
     >
       {children}
