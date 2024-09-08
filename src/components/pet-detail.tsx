@@ -11,9 +11,7 @@ export default function PetDetail() {
   return (
     <section className="bg-background-light flex h-full w-full flex-col">
       {!selectedPet ? (
-        <div className="flex h-full items-center justify-center">
-          <EmptyView />
-        </div>
+        <EmptyView />
       ) : (
         <>
           <DetailHeader pet={selectedPet} />
@@ -26,7 +24,11 @@ export default function PetDetail() {
 }
 
 function EmptyView() {
-  return <p className="font-medium text-muted-foreground">No pet selected</p>;
+  return (
+    <div className="flex h-full items-center justify-center bg-white">
+      <p className="font-medium text-muted-foreground">No pet selected</p>
+    </div>
+  );
 }
 
 type Props = {
