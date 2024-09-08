@@ -28,7 +28,6 @@ export default function Home() {
       <Hero />
       <Pricing />
       <Reviews />
-      <CallToAction />
       <Footer />
     </Container>
   );
@@ -61,8 +60,7 @@ function Hero() {
   return (
     <section className="flex w-full flex-col items-center justify-center py-16 text-center">
       <h1 className="max-w-4xl text-balance text-3xl font-bold md:text-5xl">
-        Transform your pet daycare business with our{' '}
-        <span className="text-primary">easy management tools</span>.
+        Manage your <span className="text-primary">pet daycare</span> with ease.
       </h1>
       <p className="mt-4 max-w-prose">
         A smart, reliable system designed to make pet daycare management a
@@ -165,14 +163,5 @@ function ReviewCard({ review }: { review: Review }) {
         </div>
       </CardFooter>
     </Card>
-  );
-}
-
-function CallToAction() {
-  return (
-    <section className="flex w-full flex-col items-center py-16">
-      <SectionHeading title="Don't hesitate to success" />
-      <GetStartedButton className="mt-8 w-fit" />
-    </section>
   );
 }
