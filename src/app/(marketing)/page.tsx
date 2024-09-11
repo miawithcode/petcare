@@ -29,11 +29,11 @@ function Header() {
       <Logo />
 
       <div className="flex items-center gap-x-2">
-        <Button asChild variant="secondary">
-          <Link href="/signup">Get Started</Link>
-        </Button>
         <Button asChild variant={'outline'}>
           <Link href="/app/dashboard">Launch App</Link>
+        </Button>
+        <Button asChild variant="secondary">
+          <Link href="/signup">Get Started</Link>
         </Button>
       </div>
     </header>
