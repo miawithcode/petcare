@@ -26,7 +26,7 @@ type PetFormProps = {
 };
 
 export default function PetForm({ action, onFormSubmit }: PetFormProps) {
-  const { handleAddPet, selectedPet } = usePetContext();
+  const { handleAddPet, selectedPet, handleEditPet } = usePetContext();
   const { register, handleSubmit } = useForm<PetSchema>({
     resolver: zodResolver(petSchema),
   });
@@ -40,7 +40,9 @@ export default function PetForm({ action, onFormSubmit }: PetFormProps) {
       notes: data.notes,
     };
 
-    handleAddPet(newPet);
+    action === 'add'
+      ? handleAddPet(newPet)
+      : handleEditPet(selectedPet!.id, newPet);
     onFormSubmit();
   };
 
