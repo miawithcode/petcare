@@ -64,6 +64,7 @@ const config: Config = {
       },
       fontFamily: {
         satoshi: ['var(--font-satoshi)'],
+        playfair: ['var(--font-playfair)'],
       },
     },
   },

@@ -1,4 +1,4 @@
-import PetButton from '@/components/buttons/pet-button';
+import PetButton from '@/components/pet-button';
 import ContentBlock from '@/components/content-block';
 import PetDetail from '@/components/pet-detail';
 import PetList from '@/components/pet-list';

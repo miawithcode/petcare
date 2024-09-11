@@ -1,6 +1,7 @@
 'use client';
 
 import { type Pet } from '@/lib/types';
+import { nanoid } from 'nanoid';
 import { createContext, useMemo, useState } from 'react';
 
 type TPetContext = {
@@ -10,6 +11,7 @@ type TPetContext = {
   selectedPet: Pet | undefined;
   numberOfPets: number;
   handleCheckoutPet: (id: string) => void;
+  handleAddPet: (newPet: Omit<Pet, 'id'>) => void;
 };
 
 type PetContextProviderProps = {
@@ -46,6 +48,10 @@ export default function PetContextProvider({
     setSelectedPetId(null);
   };
 
+  const handleAddPet = (newPet: Omit<Pet, 'id'>) => {
+    setPets((prev) => [...prev, { id: nanoid(), ...newPet }]);
+  };
+
   return (
     <PetContext.Provider
       value={{
@@ -55,6 +61,7 @@ export default function PetContextProvider({
         selectedPet,
         numberOfPets,
         handleCheckoutPet,
+        handleAddPet,
       }}
     >
       {children}

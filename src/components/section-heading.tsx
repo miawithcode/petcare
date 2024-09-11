@@ -1,16 +1,11 @@
 type SectionHeadingProps = {
-  title: string;
-  subtitle?: string;
+  children: React.ReactNode;
 };
 
-export default function SectionHeading({
-  title,
-  subtitle,
-}: SectionHeadingProps) {
+export default function SectionHeading({ children }: SectionHeadingProps) {
   return (
-    <div className="flex w-full flex-col items-center justify-center">
-      <p className="text-lg capitalize text-primary">{subtitle}</p>
-      <h2 className="text-2xl font-bold lg:text-4xl">{title}</h2>
+    <div className="w-full text-center">
+      <h2 className="text-2xl font-semibold lg:text-3xl">{children}</h2>
     </div>
   );
 }

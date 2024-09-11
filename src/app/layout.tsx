@@ -6,10 +6,19 @@ import { cn } from '@/lib/utils';
 const satoshi = localfont({
   src: [
     {
-      path: '../fonts/Satoshi-Variable.ttf',
+      path: './fonts/Satoshi-Variable.ttf',
     },
   ],
   variable: '--font-satoshi',
+});
+
+const playfair = localfont({
+  src: [
+    {
+      path: './fonts/PlayfairDisplay-VariableFont_wght.ttf',
+    },
+  ],
+  variable: '--font-playfair',
 });
 
 export const metadata: Metadata = {
@@ -28,6 +37,7 @@ export default function RootLayout({
         className={cn(
           'relative flex min-h-svh flex-col font-satoshi antialiased',
           satoshi.variable,
+          playfair.variable,
         )}
       >
         <main className="flex flex-1 flex-grow flex-col">{children}</main>

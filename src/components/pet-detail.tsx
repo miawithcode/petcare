@@ -3,13 +3,13 @@
 import Image from 'next/image';
 import usePetContext from '@/hooks/use-pet-context';
 import { type Pet } from '@/lib/types';
-import PetButton from './buttons/pet-button';
+import PetButton from './pet-button';
 
 export default function PetDetail() {
   const { selectedPet } = usePetContext();
 
   return (
-    <section className="bg-background-light flex h-full w-full flex-col">
+    <section className="flex h-full w-full flex-col bg-background-light">
       {!selectedPet ? (
         <EmptyView />
       ) : (
@@ -39,7 +39,7 @@ function DetailHeader({ pet }: Props) {
   const { selectedPet, handleCheckoutPet } = usePetContext();
 
   return (
-    <div className="border-border-light flex justify-between border-b bg-white px-5 py-6">
+    <div className="flex justify-between border-b border-border-light bg-white px-5 py-6">
       <div className="flex items-center gap-3">
         <div className="relative size-14 overflow-hidden rounded-full">
           <Image
@@ -85,7 +85,7 @@ function DetailInfo({ pet }: Props) {
 function Note({ pet }: Props) {
   return (
     <div className="flex-1 px-8 pb-8">
-      <div className="border-border-light h-full w-full rounded-lg border bg-white p-4">
+      <div className="h-full w-full rounded-lg border border-border-light bg-white p-4">
         {pet.notes}
       </div>
     </div>
