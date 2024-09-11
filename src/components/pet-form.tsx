@@ -26,7 +26,7 @@ type PetFormProps = {
 };
 
 export default function PetForm({ action, onFormSubmit }: PetFormProps) {
-  const { handleAddPet } = usePetContext();
+  const { handleAddPet, selectedPet } = usePetContext();
   const { register, handleSubmit } = useForm<PetSchema>({
     resolver: zodResolver(petSchema),
   });
@@ -48,12 +48,22 @@ export default function PetForm({ action, onFormSubmit }: PetFormProps) {
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-3">
       <div className="space-y-1">
         <Label htmlFor="name">Name</Label>
-        <Input id="name" type="text" {...register('name')} />
+        <Input
+          id="name"
+          type="text"
+          {...register('name')}
+          defaultValue={action === 'edit' ? selectedPet?.name : ''}
+        />
       </div>
 
       <div className="space-y-1">
         <Label htmlFor="ownerName">Owner Name</Label>
-        <Input id="ownerName" type="text" {...register('ownerName')} />
+        <Input
+          id="ownerName"
+          type="text"
+          {...register('ownerName')}
+          defaultValue={action === 'edit' ? selectedPet?.ownerName : ''}
+        />
       </div>
 
       <div className="space-y-1">
@@ -63,17 +73,27 @@ export default function PetForm({ action, onFormSubmit }: PetFormProps) {
           type="number"
           step="any"
           {...register('age', { valueAsNumber: true })}
+          defaultValue={action === 'edit' ? selectedPet?.age : ''}
         />
       </div>
 
       <div className="space-y-1">
         <Label htmlFor="imageUrl">Image URL</Label>
-        <Input id="imageUrl" {...register('imageUrl')} />
+        <Input
+          id="imageUrl"
+          {...register('imageUrl')}
+          defaultValue={action === 'edit' ? selectedPet?.imageUrl : ''}
+        />
       </div>
 
       <div className="space-y-1">
         <Label htmlFor="notes">Note</Label>
-        <Textarea id="notes" {...register('notes')} rows={3} />
+        <Textarea
+          id="notes"
+          {...register('notes')}
+          rows={3}
+          defaultValue={action === 'edit' ? selectedPet?.notes : ''}
+        />
       </div>
 
       <Button type="submit">{action === 'add' ? 'Add pet' : 'Edit pet'}</Button>
