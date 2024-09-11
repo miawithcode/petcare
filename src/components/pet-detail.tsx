@@ -4,6 +4,8 @@ import Image from 'next/image';
 import usePetContext from '@/hooks/use-pet-context';
 import { type Pet } from '@/lib/types';
 import PetButton from './pet-button';
+import { deletePet } from '@/lib/actions';
+import { useTransition } from 'react';
 
 export default function PetDetail() {
   const { selectedPet } = usePetContext();
@@ -36,7 +38,7 @@ type Props = {
 };
 
 function DetailHeader({ pet }: Props) {
-  const { selectedPet, handleCheckoutPet } = usePetContext();
+  const [isPending, startTransition] = useTransition();
 
   return (
     <div className="flex justify-between border-b border-border-light bg-white px-5 py-6">
@@ -55,7 +57,15 @@ function DetailHeader({ pet }: Props) {
 
       <div className="flex items-center gap-3">
         <PetButton action="edit">Edit</PetButton>
-        <PetButton onClick={() => handleCheckoutPet(pet.id)} action="checkout">
+        <PetButton
+          onClick={async () => {
+            startTransition(async () => {
+              await deletePet(pet.id);
+            });
+          }}
+          disabled={isPending}
+          action="checkout"
+        >
           Checkout
         </PetButton>
       </div>

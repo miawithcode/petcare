@@ -1,14 +1,16 @@
 'use client';
 
 import usePetContext from '@/hooks/use-pet-context';
-import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { Label } from './ui/label';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Pet } from '@/lib/types';
+import { type TPetFormAction } from '@/lib/types';
 import { Textarea } from './ui/textarea';
+import { addPet, editPet } from '@/lib/actions';
+import PetFormBtn from './pet-form-btn';
+import { toast } from 'sonner';
 
 const petSchema = z.object({
   name: z.string().min(1),
@@ -21,33 +23,37 @@ const petSchema = z.object({
 type PetSchema = z.infer<typeof petSchema>;
 
 type PetFormProps = {
-  action: 'add' | 'edit';
+  action: TPetFormAction;
   onFormSubmit: () => void;
 };
 
 export default function PetForm({ action, onFormSubmit }: PetFormProps) {
-  const { handleAddPet, selectedPet, handleEditPet } = usePetContext();
+  const { selectedPet } = usePetContext();
   const { register, handleSubmit } = useForm<PetSchema>({
     resolver: zodResolver(petSchema),
   });
 
-  const onSubmit: SubmitHandler<PetSchema> = (data) => {
-    const newPet: Omit<Pet, 'id'> = {
-      name: data.name,
-      age: data.age,
-      ownerName: data.ownerName,
-      imageUrl: data.imageUrl || '/images/default-pet.png',
-      notes: data.notes,
-    };
-
-    action === 'add'
-      ? handleAddPet(newPet)
-      : handleEditPet(selectedPet!.id, newPet);
-    onFormSubmit();
-  };
-
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-3">
+    <form
+      action={async (formData) => {
+        if (action === 'add') {
+          const res = await addPet(formData);
+          if (res) {
+            toast(res.message);
+            return;
+          }
+        } else {
+          const res = await editPet(selectedPet?.id, formData);
+          if (res) {
+            toast(res.message);
+            return;
+          }
+        }
+
+        onFormSubmit();
+      }}
+      className="flex flex-col gap-3"
+    >
       <div className="space-y-1">
         <Label htmlFor="name">Name</Label>
         <Input
@@ -98,7 +104,7 @@ export default function PetForm({ action, onFormSubmit }: PetFormProps) {
         />
       </div>
 
-      <Button type="submit">{action === 'add' ? 'Add pet' : 'Edit pet'}</Button>
+      <PetFormBtn action={action} />
     </form>
   );
 }
