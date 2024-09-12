@@ -17,7 +17,7 @@ export default function PetList() {
   );
 
   return (
-    <ul className="h-full w-full">
+    <ul className="h-full w-full bg-white">
       {filteredPets.map((pet) => (
         <li key={pet.id}>
           <button

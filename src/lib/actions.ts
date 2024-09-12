@@ -1,10 +1,11 @@
 'use server';
 
 import prisma from '@/lib/db';
+import { Pet } from '@prisma/client';
 import { revalidatePath } from 'next/cache';
-import { type TPet } from './types';
+import { TPetEssential } from './types';
 
-export async function addPet(newPet: Omit<TPet, 'id'>) {
+export async function addPet(newPet: TPetEssential) {
   try {
     await prisma.pet.create({
       data: newPet,
@@ -16,7 +17,7 @@ export async function addPet(newPet: Omit<TPet, 'id'>) {
   revalidatePath('/app', 'layout');
 }
 
-export async function editPet(petId: string, newPet: Omit<TPet, 'id'>) {
+export async function editPet(petId: Pet['id'], newPet: TPetEssential) {
   try {
     await prisma.pet.update({
       where: {
@@ -31,7 +32,7 @@ export async function editPet(petId: string, newPet: Omit<TPet, 'id'>) {
   revalidatePath('/app', 'layout');
 }
 
-export async function deletePet(petId: string) {
+export async function deletePet(petId: Pet['id']) {
   try {
     await prisma.pet.delete({
       where: {

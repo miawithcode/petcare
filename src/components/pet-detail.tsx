@@ -2,8 +2,8 @@
 
 import Image from 'next/image';
 import usePetContext from '@/hooks/use-pet-context';
-import { type TPet } from '@/lib/types';
 import PetButton from './pet-button';
+import { Pet } from '@prisma/client';
 
 export default function PetDetail() {
   const { selectedPet } = usePetContext();
@@ -32,7 +32,7 @@ function EmptyView() {
 }
 
 type Props = {
-  pet: TPet;
+  pet: Pet;
 };
 
 function DetailHeader({ pet }: Props) {

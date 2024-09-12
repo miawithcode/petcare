@@ -6,9 +6,10 @@ import { Label } from './ui/label';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { type TPet, type TPetFormAction } from '@/lib/types';
+import { type TPetFormAction } from '@/lib/types';
 import { Textarea } from './ui/textarea';
 import PetFormBtn from './pet-form-btn';
+import { TPetEssential } from '@/lib/types';
 
 const petSchema = z.object({
   name: z.string().min(1),
@@ -36,7 +37,7 @@ export default function PetForm({ action, onFormSubmit }: PetFormProps) {
       action={async (formData) => {
         onFormSubmit();
 
-        const newPet: Omit<TPet, 'id'> = {
+        const newPet: TPetEssential = {
           name: formData.get('name') as string,
           ownerName: formData.get('ownerName') as string,
           age: Number(formData.get('age') as string),
