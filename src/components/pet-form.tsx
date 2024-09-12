@@ -6,11 +6,9 @@ import { Label } from './ui/label';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { type TPetFormAction } from '@/lib/types';
+import { type TPet, type TPetFormAction } from '@/lib/types';
 import { Textarea } from './ui/textarea';
-import { addPet, editPet } from '@/lib/actions';
 import PetFormBtn from './pet-form-btn';
-import { toast } from 'sonner';
 
 const petSchema = z.object({
   name: z.string().min(1),
@@ -28,7 +26,7 @@ type PetFormProps = {
 };
 
 export default function PetForm({ action, onFormSubmit }: PetFormProps) {
-  const { selectedPet } = usePetContext();
+  const { selectedPet, handleAddPet, handleEditPet } = usePetContext();
   const { register, handleSubmit } = useForm<PetSchema>({
     resolver: zodResolver(petSchema),
   });
@@ -36,21 +34,22 @@ export default function PetForm({ action, onFormSubmit }: PetFormProps) {
   return (
     <form
       action={async (formData) => {
-        if (action === 'add') {
-          const res = await addPet(formData);
-          if (res) {
-            toast(res.message);
-            return;
-          }
-        } else {
-          const res = await editPet(selectedPet?.id, formData);
-          if (res) {
-            toast(res.message);
-            return;
-          }
-        }
-
         onFormSubmit();
+
+        const newPet: Omit<TPet, 'id'> = {
+          name: formData.get('name') as string,
+          ownerName: formData.get('ownerName') as string,
+          age: Number(formData.get('age') as string),
+          imageUrl:
+            (formData.get('imageUrl') as string) || '/images/default-pet.png',
+          notes: formData.get('notes') as string,
+        };
+
+        if (action === 'add') {
+          await handleAddPet(newPet);
+        } else {
+          await handleEditPet(selectedPet!.id, newPet);
+        }
       }}
       className="flex flex-col gap-3"
     >

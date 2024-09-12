@@ -2,16 +2,14 @@
 
 import Image from 'next/image';
 import usePetContext from '@/hooks/use-pet-context';
-import { type Pet } from '@/lib/types';
+import { type TPet } from '@/lib/types';
 import PetButton from './pet-button';
-import { deletePet } from '@/lib/actions';
-import { useTransition } from 'react';
 
 export default function PetDetail() {
   const { selectedPet } = usePetContext();
 
   return (
-    <section className="flex h-full w-full flex-col bg-background-light">
+    <section className="flex h-full w-full flex-col bg-neutral-50">
       {!selectedPet ? (
         <EmptyView />
       ) : (
@@ -34,11 +32,11 @@ function EmptyView() {
 }
 
 type Props = {
-  pet: Pet;
+  pet: TPet;
 };
 
 function DetailHeader({ pet }: Props) {
-  const [isPending, startTransition] = useTransition();
+  const { handleCheckoutPet } = usePetContext();
 
   return (
     <div className="flex justify-between border-b border-border-light bg-white px-5 py-6">
@@ -55,15 +53,10 @@ function DetailHeader({ pet }: Props) {
         <h2 className="text-xl font-semibold leading-7">{pet.name}</h2>
       </div>
 
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-1">
         <PetButton action="edit">Edit</PetButton>
         <PetButton
-          onClick={async () => {
-            startTransition(async () => {
-              await deletePet(pet.id);
-            });
-          }}
-          disabled={isPending}
+          onClick={async () => await handleCheckoutPet(pet.id)}
           action="checkout"
         >
           Checkout

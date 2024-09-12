@@ -14,7 +14,7 @@ export default async function Layout({
   const pets = await prisma.pet.findMany();
 
   return (
-    <Container className="relative flex h-svh min-h-svh max-w-screen-xl flex-col">
+    <Container className="relative flex h-svh min-h-svh flex-col">
       <AppHeader />
 
       <SearchContextProvider>

@@ -2,18 +2,18 @@ import { cn } from '@/lib/utils';
 
 type DecorationProps = {
   className: string;
-  color?: 'green' | 'yellow' | 'red';
+  color?: 'blue' | 'yellow' | 'red';
 };
 
 const colorMap = {
-  green: '#00832D',
-  yellow: '#F5C451',
-  red: '#FF4538',
+  blue: '#7EB5C5',
+  yellow: '#E8DEBB',
+  red: '#DAB3A7',
 };
 
 export default function Decoration({
   className,
-  color = 'green',
+  color = 'blue',
 }: DecorationProps) {
   return (
     <svg

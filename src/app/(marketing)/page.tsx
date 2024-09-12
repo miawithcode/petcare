@@ -131,7 +131,7 @@ function AppScreenshot({ className }: { className?: string }) {
       <SectionHeading>Take care of your furry friends</SectionHeading>
       <div
         className={cn(
-          'relative mx-auto mt-2 aspect-[1.5565789474] w-full max-w-screen-md overflow-hidden rounded-lg shadow-lg',
+          'relative mx-auto mt-2 aspect-[1.7628398792] w-full max-w-screen-md overflow-hidden rounded-lg shadow-lg',
           className,
         )}
       >
@@ -140,6 +140,7 @@ function AppScreenshot({ className }: { className?: string }) {
           alt="App Screenshot"
           className="object-cover"
           src="/images/app-screenshot.png"
+          unoptimized
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />
       </div>

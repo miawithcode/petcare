@@ -23,8 +23,8 @@ export default function PetList() {
           <button
             onClick={() => handleSelectPet(pet.id)}
             className={cn(
-              'hover:bg-background-light flex h-full w-full items-center gap-3 px-5 py-4 transition',
-              { 'bg-background-light': selectedPetId === pet.id },
+              'flex h-full w-full items-center gap-3 px-5 py-4 transition hover:bg-neutral-50',
+              { 'bg-neutral-50': selectedPetId === pet.id },
             )}
           >
             <Suspense
