@@ -4,3 +4,5 @@ export const priceFeatures = [
   'Real-Time Updates',
   'Lifetime Support ',
 ];
+
+export const DEFAULT_PET_IMAGE = '/images/default-pet.png';
