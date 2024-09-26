@@ -29,7 +29,7 @@ export default function PetButton({
 
   if (action === 'checkout') {
     return (
-      <Button variant="outline" size="sm" onClick={onClick}>
+      <Button variant="secondary" size="sm" onClick={onClick}>
         {children}
       </Button>
     );
@@ -43,7 +43,7 @@ export default function PetButton({
             {children}
           </Button>
         ) : (
-          <Button variant="outline" size="sm">
+          <Button variant="secondary" size="sm">
             {children}
           </Button>
         )}

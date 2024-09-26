@@ -29,10 +29,10 @@ function Header() {
       <Logo />
 
       <div className="flex items-center gap-x-2">
-        <Button asChild variant={'outline'}>
+        <Button asChild variant={'ghost'}>
           <Link href="/app/dashboard">Launch App</Link>
         </Button>
-        <Button asChild variant="secondary">
+        <Button asChild variant={'secondary'}>
           <Link href="/signup">Get Started</Link>
         </Button>
       </div>
@@ -43,7 +43,7 @@ function Header() {
 function Hero() {
   return (
     <section className="flex w-full flex-col items-center justify-center py-16 text-center">
-      <h1 className="font-playfair max-w-xl text-balance text-3xl leading-relaxed tracking-tight md:text-6xl">
+      <h1 className="max-w-xl text-balance font-playfair text-3xl leading-relaxed tracking-tight md:text-6xl">
         Manage your <span className="italic">pet daycare</span> with ease.
       </h1>
       <h2 className="mt-4 max-w-prose">
